@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
+
+body {
+    font-family: 'Orbitron', sans-serif; /* Apply Orbitron as the default font */
+}
+
+.glassmorphism {
+ width: 100%;
+ background: #130808;
+ background: linear-gradient(90deg,#130808 0%, #ff69b4 80%);
+ background: -webkit-linear-gradient(90deg,#130808 0%, #ff69b4 90%);
+ background: -moz-linear-gradient(90deg,#130808 0%, #ff69b4 80%);
+ border-radius: 10px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(7.7px);
+  -webkit-backdrop-filter: blur(7.7px);
+  border: 1px solid rgba(91, 197, 113, 0.3);
+}
+
+.glass-button {
+  background-color: rgb(255,128,170);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 12px 24px;
+  color: white;
+  border-radius: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.glass-button:hover {
+  background-color: rgba(50, 205, 50, 1);
+}
+
+.glass-input {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #000D00, #000);
+}
