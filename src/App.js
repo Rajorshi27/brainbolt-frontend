@@ -9,9 +9,8 @@ const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isGuest, setIsGuest] = useState(false);  // Track if the user is a guest
 
-  // Route Guard for SessionPage
   const AccessRoute = ({ children }) => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isGuest) {
       return <Navigate to="/login" replace />;
     }
     return children;
