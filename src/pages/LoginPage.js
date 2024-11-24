@@ -26,8 +26,8 @@ const LoginPage = ({ setIsAuthenticated, setIsGuest }) => {
   };
 
   const handleGuestAccess = () => {
-    setIsGuest(true);  // Set guest access flag
-    navigate('/form');  // Redirect to session form for guest
+    setIsGuest(true);
+    navigate('/form');
   };
 
   return (

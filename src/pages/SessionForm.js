@@ -31,20 +31,18 @@ const SessionForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Store session data in localStorage for SessionPage
     localStorage.setItem('sessionData', JSON.stringify({
       topic: formData.topic,
       members: formData.members,
       goal: formData.goal,
-      files: null // Files can't be stored in localStorage
+      files: null
     }));
 
     navigate('/session');
   };
 
   const handleGuestAccess = () => {
-    // Handle guest access (if any actions are required)
-    navigate('/form');  // Navigate to the session form for guest
+    navigate('/form');
   };
 
   return (
