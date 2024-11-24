@@ -1,47 +1,57 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import IntroPage from './pages/IntroPage';
 import LoginPage from './pages/LoginPage';
 import SessionForm from './pages/SessionForm';
-import TechniquesPage from './pages/TechniquesPage';
 import SessionPage from './pages/SessionPage';
-import SessionSummary from './components/SessionSummary'; // Ensure you import SessionSummary
 
 const App = () => {
-    const [step, setStep] = useState(0);  // 0: Intro, 1: Login, 2: Form, 3: Techniques, 4: Session
-    const [sessionData, setSessionData] = useState(null);
-    const [selectedTechnique, setSelectedTechnique] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isGuest, setIsGuest] = useState(false);  // Track if the user is a guest
 
-    const techniques = [
-        { name: 'Mind Mapping', steps: ['Step 1: Draw the topic...', 'Step 2: ...'] },
-        { name: 'Brainwriting', steps: ['Step 1: Write your ideas...', 'Step 2: ...'] }
-        // Add more techniques here
-    ];
+  // Route Guard for SessionPage
+  const AccessRoute = ({ children }) => {
+    if (!isAuthenticated) {
+      return <Navigate to="/login" replace />;
+    }
+    return children;
+  };
 
-    const handleSelectTechnique = (technique) => {
-        setSelectedTechnique(technique);
-        // Set session data based on selected technique or form input
-        setSessionData({
-            topic: technique.name, // Use technique name as topic
-            participants: 5, // Example value, adjust as needed
-            duration: 30 // Example value, adjust as needed
-        });
-        setStep(4);
-    };
+  return (
+    <Router>
+      <div className="min-h-screen bg-gradient-to-b from-[#0a192f] to-[#4a148c]">
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<IntroPage />} />
+          <Route
+            path="/login"
+            element={
+              <LoginPage
+                setIsAuthenticated={setIsAuthenticated}
+                setIsGuest={setIsGuest}  // Pass the setter for guest access
+              />
+            }
+          />
 
-    return (
-        <>
-            {step === 0 && <IntroPage onStart={() => setStep(1)} />}
-            {step === 1 && <LoginPage onLogin={() => setStep(2)} onGuest={() => setStep(2)} />}
-            {step === 2 && <SessionForm onSubmit={(data) => { setSessionData(data); setStep(3); }} />}
-            {step === 3 && <TechniquesPage techniques={techniques} onSelectTechnique={handleSelectTechnique} />}
-            {step === 4 && selectedTechnique && sessionData && (
-                <>
-                    <SessionSummary sessionData={sessionData} /> {/* Display Session Summary */}
-                    <SessionPage technique={selectedTechnique} />
-                </>
-            )}
-        </>
-    );
+          {/* Semi-protected routes (accessible to guests) */}
+          <Route path="/form" element={<SessionForm />} />
+
+          {/* Protected routes (for authenticated or guest users) */}
+          <Route
+            path="/session"
+            element={
+              <AccessRoute>
+                <SessionPage />
+              </AccessRoute>
+            }
+          />
+
+          {/* Fallback route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 };
 
 export default App;

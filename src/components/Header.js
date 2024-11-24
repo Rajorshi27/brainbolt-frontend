@@ -1,22 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
-    <header className="w-full py-4 bg-black text-white"> {/* Change background to black */}
-      <h1 className="text-2xl font-bold text-center">BrainBolt</h1>
-      <nav>
-        <ul className="flex justify-center space-x-4">
-          <li>
-            <a href="/login" className="hover:underline text-pink-400">Login</a>
-          </li>
-          <li>
-            <a href="/session" className="hover:underline text-pink-400">Session</a>
-          </li>
-          <li>
-            <a href="/techniques" className="hover:underline text-pink-400">Techniques</a>
-          </li>
-        </ul>
-      </nav>
+    <header className="fixed top-0 left-0 w-full py-6 px-8 bg-slate-900/80 backdrop-blur-lg border-b border-pink-500/20 z-10">
+      <h1 className="text-2xl font-semibold tracking-tight">
+        <Link to="/" className="text-white hover:opacity-90 transition-opacity">
+          BrainBolt
+        </Link>
+      </h1>
     </header>
   );
 };

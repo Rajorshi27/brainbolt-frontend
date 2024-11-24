@@ -1,30 +1,27 @@
 import React from 'react';
 
-const TextInput = ({ label, value, onChange, type = "text", className }) => {
-    const handleChange = (e) => {
-        const newValue = type === "number" ? Number(e.target.value) : e.target.value;
-        onChange(newValue);
-    };
-
-    return (
-        <div className="mb-4">
-            <label className="block text-lg text-white mb-2">{label}</label>
-            {type === "textarea" ? (
-                <textarea
-                    value={value}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-lime-400 ${className}`}
-                />
-            ) : (
-                <input
-                    type={type}
-                    value={value}
-                    onChange={handleChange}
-                    className={`w-full px-4 py-2 border rounded focus:outline-none focus:ring-2 focus:ring-lime-400 ${className}`}
-                />
-            )}
-        </div>
-    );
+const TextInput = ({
+  name,
+  value,
+  onChange,
+  onKeyPress,
+  placeholder,
+  type = 'text',
+  className = ''
+}) => {
+  return (
+    <input
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      onKeyPress={onKeyPress}
+      placeholder={placeholder}
+      className={`w-full px-4 py-3 rounded-md bg-white/10 border border-pink-500/30 text-white
+        placeholder-white/40 focus:outline-none focus:border-pink-500 focus:bg-white/15
+        transition-all duration-300 ${className}`}
+    />
+  );
 };
 
 export default TextInput;
