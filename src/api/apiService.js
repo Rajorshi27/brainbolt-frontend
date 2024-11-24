@@ -1,4 +1,3 @@
-// apiService.js
 const SYSTEM_PROMPT = `You are an expert brainstorming facilitator. Given the topic, participants, and goal:
 1. Choose the most appropriate brainstorming method for this specific situation
 2. Explain briefly why this method is ideal for their needs

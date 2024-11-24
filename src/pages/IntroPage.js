@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 
-// Import all images
 import logo from '../images/logo.png';
 import formIcon from '../images/formicon.png';
 import instructionIcon from '../images/instruction.png';

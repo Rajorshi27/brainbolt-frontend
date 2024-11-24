@@ -1,4 +1,3 @@
-// ChatGPTWidget.js
 import React, { useState, useRef, useEffect } from 'react';
 import Button from './Button';
 import { initializeSession, sendMessage } from '../api/apiService';
